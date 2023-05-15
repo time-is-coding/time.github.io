@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // let data = [{
+        //     'condition': 'AND',
+        //     'id': '46v192szmvy000',
+        //     'pid': 'root',
+        //     'rules': [
+        //         {
+        //             'pid': '46v192szmvy000',
+        //             'id': '31grll3bphk000',
+        //             'value': null,
+        //             'op': '0',
+        //             'fieldName': null
+        //         }, 
+        //         {
+        //             'pid': '46v192szmvy000',
+        //             'id': '5koptfkhzwc000',
+        //             'condition': 'AND',
+        //             'rules': [{
+        //                     'value': null,
+        //                     'op': '0',
+
+        //                     'pid': '5koptfkhzwc000',
+        //                     'id': '3w49qzzeymk000'
+        //                 }, {
+        //                     'value': null,
+        //                     'op': '0',
+
+        //                     'pid': '5koptfkhzwc000',
+        //                     'id': '2eku19a98d5w00'
+        //                 }, {
+        //                     'pid': '5koptfkhzwc000',
+        //                     'id': '5ovoy5bfmqo000',
+        //                     'condition': 'AND',
+        //                     'rules': [{
+        //                             'value': null,
+        //                             'op': '0',
+
+        //                             'pid': '5ovoy5bfmqo000',
+        //                             'id': '2tky4k4vzcy000'
+        //                         }, {
+        //                             'value': null,
+        //                             'op': '0',
+
+        //                             'pid': '5ovoy5bfmqo000',
+        //                             'id': '3ifybsoyf7e000'
+        //                         }
+        //                     ]
+        //                 }
+        //             ]
+        //         }, 
+        //         {
+        //             'value': null,
+        //             'op': '0',
+        //             'pid': '46v192szmvy000',
+        //             'id': '38c8f89lkfy000'
+        //         }
+        //     ]
+        // }]
+
+        
+
+        // // dfs Map 
+        // const dfsMap = (tree,childKey, process) => {
+        //     return tree.map(node => {
+        //         const processedNode = process(node);
+        //         if(Array.isArray(processedNode[childKey])) {
+        //             return {...processedNode, [childKey]: dfsMap(processedNode[childKey], childKey, process)}
+        //         }
+        //         return processedNode;
+        //     })
+        // }
+
+        // const removeTreeItem = (tree, nodeId) => {
+        //     return dfsMap(tree, 'rules', (node) => {
+        //     if(Array.isArray(node.rules)) {
+        //         const idx = node.rules.findIndex(rule => rule.id === nodeId);
+        //         if(idx !== -1) {
+        //             node.rules.splice(idx, 1);
+        //         }
+        //         if(node.rules.length === 1) {
+        //             const result =  { ...node.rules[0], ...node };
+        //             delete result.condition;
+        //             delete result.rules;
+        //             return result
+        //         }
+        //     }
+        //     return node;
+        // })
+        // }
+
+        // console.log(removeTreeItem(data, "46v192szmvy000"))
+
+
+
+        const listData = [
+            {
+                id:"p1",
+                title: '广东',
+            },
+            {
+                id:"p1-1",
+                pid: 'p1',
+                title: '广州',
+            },
+            {
+                id:"p2",
+                title:"四川",
+            },
+            {
+                id:"p2-1",
+                pid: 'p2',
+                title:"成都",
+            },
+            {
+                id:"p2-2",
+                pid: 'p2',
+                title:"德阳"
+            },
+            {
+                id:"p2-3",
+                pid: 'p2',
+                title:"绵阳"
+            },
+            {
+                id:"p2-1-1",
+                pid: 'p2-1',
+                title:"高新区",
+            }
+        ]
+
+        const listToTree = list => {
+            const res = []
+            const dfs = (tree, node) => {
+                tree.forEach(i => {
+                    if(i.id === node.pid){
+                        if(i.children){
+                            i.children.push(node)
+                        }else{
+                            i.children = [node]
+                        }
+                    }else{
+                        dfs(i.children, node)
+                    }
+                })
+            }
+            list.forEach(i => dfs(res, i))
+            return res
+        }
+    </script>
+</body>
+</html>

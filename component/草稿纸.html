@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function a(){
+        //     function b(){
+        //         console.log(this)
+        //     }
+        //     b()
+        // }
+        // a()
+
+        // function Test() {
+        //     this.x = 1
+        //     this.fn = function(){
+        //         console.log(this)
+        //     }
+        // }
+        // console.log(this === window && this === globalThis)
+        // console.log(window === globalThis)
+
+        // var obj = new Test();
+        // obj.fn()
+
+
+        // function fn(food, drink) {
+        //     console.log(this.name)
+        //     console.log(`今天吃${food},喝${drink}`)
+        // }
+        // const obj = {
+        //     name: "obj"
+        // }
+        // fn.call(obj, "米饭", "可乐")   // "obj"
+        // fn.apply(obj, ["米饭", "可乐"])   // "obj"
+
+        // const fn2 = fn.bind(obj, "米饭", "可乐")
+        // fn2("面", "面汤")
+
+
+
+        // Function.prototype.selfCall = function (context, ...params) {
+        //     const _this = this
+        //     context["KEY"] = _this
+        //     const res = context["KEY"](...params)
+        //     delete context["KEY"]
+        //     return res
+        // }
+
+
+        // function fn(food, drink) {
+        //     console.log(this.name)
+        //     console.log(`今天吃${food},喝${drink}`)
+        // }
+        // const obj = {
+        //     name: "obj"
+        // }
+        // fn.selfCall(obj, "米饭", "可乐")   // "obj"
+
+        // Function.prototype.myBind = function (context, ...params) {
+        //     let _this = this
+        //     return function (...arg) {
+        //         _this.selfCall(context, ...params, ...arg)
+        //     }
+        // }
+        // const fn2 = fn.myBind(obj)
+        // fn2("面", "面汤")
+    </script>
+</body>
+
+</html>
